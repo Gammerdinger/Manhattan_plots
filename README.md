@@ -84,4 +84,19 @@ What we want now is a file that alters these sizes into a "running total" of the
 perl Running_chrom.pl --input_file=20120125_MapAssembly.anchored.assembly.fasta.underscores.fai --output_file=O_niloticus_running_chrom_size.txt
 ```
  
+ Now the output should look like:
+ 
+ ```
+ LG1	0
+LG2	31194787
+LG3	56243078
+LG4	75568441
+LG5	104248396
+LG6	141637485
+LG7	178362728
+LG8_24	229404984
+LG9	258852804
+LG10	279809457
+...
+ ```
 
