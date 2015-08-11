@@ -36,6 +36,16 @@ LG1	9326	9327	snp	0.03735688
 LG1	11606	11607	snp	0.05065753
 LG1	14177	14178	snp	0.02231113
 ...
+UNK5647	331	332	snp	0.00877602
+UNK5647	607	608	snp	0.03875315
+UNK5647	773	774	snp	0.02473372
+UNK5647	819	820	snp	0.03518803
+UNK5647	902	903	snp	0.01615389
+UNK5651	779	780	snp	0.02416214
+UNK5651	842	843	snp	0.01711530
+UNK5655	248	249	snp	0.04347897
+UNK5655	431	432	snp	0.02690219
+UNK5655	774	775	snp	0.15040816
 ```
 
 ### Making the first plots
@@ -76,6 +86,16 @@ LG8_24	29447820	233228448	60	61
 LG9	20956653	263167070	60	61
 LG10	17092887	284473007	60	61
 ...
+UNK5646	1002	943183303	60	61
+UNK5647	1001	943184331	60	61
+UNK5648	1001	943185358	60	61
+UNK5649	1001	943186385	60	61
+UNK5650	1001	943187412	60	61
+UNK5651	1000	943188439	60	61
+UNK5652	1000	943189465	60	61
+UNK5653	1000	943190491	60	61
+UNK5654	1000	943191517	60	61
+UNK5655	1000	943192543	60	61
 ```
 
 What we want now is a file that alters these sizes into a "running total" of the genome. This way postion 1 of LG1 is 1, position 1 of LG2 is 31194788, position 1 of LG3 is 56243079 and etc. To accomplish this goal, we will run the script named Running_chrom.pl using this command-line:
@@ -84,7 +104,7 @@ What we want now is a file that alters these sizes into a "running total" of the
 perl Running_chrom.pl --input_file=20120125_MapAssembly.anchored.assembly.fasta.underscores.fai --output_file=O_niloticus_running_chrom_size.txt
 ```
  
- Now the output should look like:
+Now the output should look like:
  
 ```
 LG1	0
@@ -98,5 +118,46 @@ LG8_24	229404984
 LG9	258852804
 LG10	279809457
 ...
+UNK5646	927669481
+UNK5647	927670483
+UNK5648	927671484
+UNK5649	927672485
+UNK5650	927673486
+UNK5651	927674487
+UNK5652	927675487
+UNK5653	927676487
+UNK5654	927677487
+UNK5655	927678487
 ```
 
+Next, you need to run this perl script with will convert the position column into a "running position" column using this command-line:
+
+```
+perl Genome_R_script.pl --input_file=O_niloticus_males_vs_females.downsampled.fst.igv --output_file=O_niloticus_males_vs_females.downsampled.fst.R_ready --chrom_size_file=O_niloticus_running_chrom_size.txt
+```
+
+The output should look like:
+
+```
+LG1	697	0.02473565
+LG1	821	0.01328195
+LG1	1098	0.02965631
+LG1	1432	0.01148924
+LG1	3842	0.05440369
+LG1	8114	0.05959184
+LG1	9326	0.03735688
+LG1	11606	0.05065753
+LG1	14177	0.02231113
+LG1	15117	0.01535743
+...
+UNK5647	927670814	0.00877602
+UNK5647	927671090	0.03875315
+UNK5647	927671256	0.02473372
+UNK5647	927671302	0.03518803
+UNK5647	927671385	0.01615389
+UNK5651	927675266	0.02416214
+UNK5651	927675329	0.01711530
+UNK5655	927678735	0.04347897
+UNK5655	927678918	0.02690219
+UNK5655	927679261	0.15040816
+```
