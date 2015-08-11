@@ -212,3 +212,5 @@ abline(h=3, lwd=2, col="red", lty=2)
 dev.off()
 ```
 
+The final product should look like:
+![alt tag](https://github.com/Gammerdinger/Manhattan_plots/blob/master/O_niloticus_WG.png)
