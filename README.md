@@ -86,8 +86,8 @@ perl Running_chrom.pl --input_file=20120125_MapAssembly.anchored.assembly.fasta.
  
  Now the output should look like:
  
- ```
- LG1	0
+```
+LG1	0
 LG2	31194787
 LG3	56243078
 LG4	75568441
@@ -98,5 +98,5 @@ LG8_24	229404984
 LG9	258852804
 LG10	279809457
 ...
- ```
+```
 
