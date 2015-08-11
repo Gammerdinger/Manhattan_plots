@@ -48,9 +48,40 @@ Instinctively, you may be tempted to do two things:
 
 * Second, you may try to put all of the information in one plot. You'll use the start position as the x-axis and the Fst value as the y-axis. This is basically where we are going, but remember you have information about the genome position in column 1 and column 2. The problem is that it makes no distinction between position 1 on chromsome 1 and position 1 on chromosome 2. The result of this is shown in the file Second_mistake.png.
 
-### Making your first plots actually
+### Making your first plots, actually
 
+In order to accomplish this you will need to get a few files downloaded and created. First, let's get the reference genome we are working with using this command:
 
+```
+curl -O -L http://chambo.umd.edu/download/20120125_MapAssembly.anchored.assembly.fasta.underscores .
+```
 
+Next, you'll want to make a file containing the sizes of each chromosome. You'll want to use this commands:
+
+```
+samtools faidx 20120125_MapAssembly.anchored.assembly.fasta.underscores
+```
+
+Now, we have a file containing each chromosome and the size of the chromosome like below:
+
+```
+LG1	31194787	5	60	61
+LG2	25048291	31714711	60	61
+LG3	19325363	57180479	60	61
+LG4	28679955	76827937	60	61
+LG5	37389089	105985897	60	61
+LG6	36725243	143998143	60	61
+LG7	51042256	181335479	60	61
+LG8_24	29447820	233228448	60	61
+LG9	20956653	263167070	60	61
+LG10	17092887	284473007	60	61
+...
+```
+
+What we want now is a file that alters these sizes into a "running total" of the genome. This way postion 1 of LG1 is 1, position 1 of LG2 is 31194788, position 1 of LG3 is 56243079 and etc. To accomplish this goal, we will run the script named Running_chrom.pl using this command-line:
+
+```
+perl Running_chrom.pl --input_file=20120125_MapAssembly.anchored.assembly.fasta.underscores.fai --output_file=O_niloticus_running_chrom_size.txt
+```
  
 
