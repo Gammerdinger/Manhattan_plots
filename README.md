@@ -66,9 +66,13 @@ In order to accomplish this you will need to get a few files downloaded and crea
 curl -O -L http://chambo.umd.edu/download/20120125_MapAssembly.anchored.assembly.fasta.underscores .
 ```
 
-Next, you'll want to make a file containing the sizes of each chromosome. You'll want to use this commands:
+Next, you'll want to make a file containing the sizes of each chromosome. In order to do this, we need to use a useful program called Samtools. First we need to download and install it on your computer. You'll want to use these commands:
 
 ```
+curl -O -L http://sourceforge.net/projects/samtools/files/samtools/1.2/samtools-1.2.tar.bz2
+tar xvfj samtools-1.2.tar.bz2
+make
+sudo make install
 samtools faidx 20120125_MapAssembly.anchored.assembly.fasta.underscores
 ```
 
@@ -161,3 +165,50 @@ UNK5655	927678735	0.04347897
 UNK5655	927678918	0.02690219
 UNK5655	927679261	0.15040816
 ```
+
+Now we are ready to make our Manhattan plots in R. First, we need to open R and set our working directory.
+
+```
+setwd(/Where/ever/your/folder/you/are/using/as/a/working/directory)
+```
+
+Next, you need to read in your files using these commands
+
+```
+WG_Fst.dat<-read.table("/Path/to/O_niloticus_males_vs_females.downsampled.fst.R_ready", header=F)
+WG_Fet.dat<-read.table("/Path/to/O_niloticus_males_vs_females.downsampled.fet.R_ready", header=F)
+```
+
+Lastly, we get to make the png containing two plots using this command:
+
+```
+
+png("O_niloticus_WG.png",width=13,height=7.5,units="in",res=300)
+
+par(mfrow=c(2,1), oma=c(0.25,0.25,3,0.25), mar=c(5,4,1.5,1))
+
+plot(WG_Fst.dat$V2/1000000,WG_Fst.dat$V3, col=WG_Fst.dat$V1, xlab=NA, ylab=NA, pch=20, cex=0.01, ylim=c(0,1), axes=F) 
+box()
+axis(2, cex=0.85, las=2)
+mtext(side=1, "                                                1        2      3      4         5           6            7          8_24    9   10     11        12       13       14       15    16_21     17      18     19      20      22     23                                                                                                                                          ", cex=0.75, las=0, line=0.2)
+mtext(side=1, "                                                                                                                                                                                                                                                                             _______________________________________________________", cex=0.65, las=0, line=-0.5)
+mtext(side=1, "                                                                                                                                                                                                                               UNK1-UNK5655", cex=0.75, las=0, line=0.45)
+mtext(side=1, "Linkage Group", line=2, cex=0.9)
+mtext(side=2, expression("F"[ST]), line=2.5, cex=0.9)
+mtext(side=3, expression("Popoolation2's F"[ST]), line=0.2)
+
+plot(WG_Fet.dat$V2/1000000,WG_Fet.dat$V3, col=WG_Fet.dat$V1, xlab=NA, ylab=NA, pch=20, cex=0.01, ylim=c(0,20), axes=F) 
+box()
+axis(2, cex=0.85, las=2)
+mtext(side=1, "                                                1        2      3      4         5           6            7          8_24    9   10     11        12       13       14       15    16_21     17      18     19      20     22      23                                                                                                                                          ", cex=0.75, las=0, line=0.2)
+mtext(side=1, "                                                                                                                                                                                                                                                                             _______________________________________________________", cex=0.65, las=0, line=-0.5)
+mtext(side=1, "                                                                                                                                                                                                                               UNK1-UNK5655", cex=0.75, las=0, line=0.45)
+mtext(side=1, "Linkage Group", line=2, cex=0.9)
+mtext(side=2, "-log(p)", line=2.5, cex=0.9)
+mtext(side=3, expression("Popoolation2's Fisher's Exact Test"), line=0.2)
+abline(h=1.301, lwd=2, col="chartreuse", lty=2)
+abline(h=3, lwd=2, col="red", lty=2)
+
+dev.off()
+```
+
