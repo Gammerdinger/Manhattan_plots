@@ -1,4 +1,4 @@
-Manhattan_plots
+Manhattan plots
 ==============
 Background
 --------------
@@ -9,13 +9,19 @@ The sample files here are downsampled and they are intended for tutorial use onl
 
 ### Getting started
 
-You will may have a BED file, IGV (Integrative Genomics Viewer: https://www.broadinstitute.org/igv/) file or a different type of file. This tutorial is designed to work with IGV files, but it can be modified by tweaking the code to work on BED files or other files formats. Below is the outline of the pipeline I used to get from raw reads into the IGV file format:
+You may have a BED file, IGV (Integrative Genomics Viewer: https://www.broadinstitute.org/igv/) file or a different type of file. This tutorial is designed to work with IGV files, but it can be modified by tweaking the the provide perl scripts to work on BED files or other files formats. Below is the outline of the pipeline I used to get from raw reads into the IGV file format:
 
 ![alt tag](https://github.com/Gammerdinger/Manhattan_plots/blob/master/Poopolation_Pipeline.png)
 
-First, download the file titled: O_niloticus_males_vs_females.downsampled.fst.igv
+First, download Github file contain all of the files you'll need for this tutorial by click on the "Download ZIP" icon on the right side. Using the terminal window, you'll need to change directories to this folder using this command:
 
-This is a downsampled file that was used in Gammerdinger et al., 2014.
+```
+cd ~/Downloads/Manhattan_plots/
+```
+
+Inside you should find the file titled: O_niloticus_males_vs_females.downsampled.fst.igv 
+
+This is a downsampled file of what was used in Gammerdinger et al., 2014.
 
 * The file should have 5 columns and the first line is the header for the file:
   - Column 1 is the chromosome/scaffold/linkage group
@@ -23,8 +29,6 @@ This is a downsampled file that was used in Gammerdinger et al., 2014.
   - Column 3 is the end position of the feature
   - Column 4 is the feature, in this case it is a Single Nucleotide Polymorphism ("snp")
   - Column 5 is the score of the feature, in this case it is Fst
-
-
 
 ```
 Chromosome	Start	End	Feature	1:2
@@ -54,23 +58,23 @@ UNK5655	774	775	snp	0.15040816
 
 Instinctively, you may be tempted to do two things:
 
-* First, you may try to make a graph for each chromosome/scaffold/linkage group. This is what I did at first, but you realize that since each chromosome/scaffold/linkage group is a different size, that you'd need to scale each chromosome/scaffold/linkage group to be proportional to fairly portray the genome. For example, if we allocate 2 inches for each chromosome, then a 5 megabase chromosome will occupy the same amount of space as a 35 megabase chromosome. The result from this will be that the 35 megabase chromsome will appear to have a denser clustering of SNPs. The solution as I said above would be to make plots sized proportionally to the size of the chromosome, so that a plot with 5 megabase chromosome takes up a seventh the space that a 35 megabase chromosome. I suspect that a solution to this criticism exists, but I am unaware of it. 
+* First, you may try to make a graph for each chromosome/scaffold/linkage group. This is what I did at first, but you realize that since each chromosome/scaffold/linkage group is a different size, that you'd need to scale each chromosome/scaffold/linkage group to be proportional to fairly portray the genome. For example, if we allocate 2 inches for each chromosome, then a 5 megabase chromosome will occupy the same amount of space as a 35 megabase chromosome. The result from this will be that the 35 megabase chromsome will artificially appear to have a denser clustering of SNPs. The solution, as I said above, would be to make plots sized proportionally to the size of the chromosome, so that a plot with 5 megabase chromosome takes up a seventh the space of a 35 megabase chromosome. I suspect that a solution to this criticism exists, but I am unaware of it. 
 
   Furthermore, many genome assemblies, particularly for non-model organsims, are thousands of scaffolds. Perhaps this scaling approach could be accomplished manually for a limited number of chromosomes, but it isn't feasible for assemblies that are more fragmented and contain many scaffolds.
 
-* Second, you may try to put all of the information in one plot. You'll use the start position as the x-axis and the Fst value as the y-axis. This is basically where we are going, but remember you have information about the genome position in column 1 and column 2. The problem is that it makes no distinction between position 1 on chromsome 1 and position 1 on chromosome 2. The result of this is shown in the file Overlap_O_niloticus_WG.png.
+* Second, you may try to put all of the information in one plot. You'll use the start position as the x-axis and the Fst value as the y-axis. This is basically where we are going, but remember you have information about the genome position in column 1 and column 2. The problem is that this idea makes no distinction between position 1 on chromsome 1 and position 1 on chromosome 2. The result of this is shown in the file Overlap_O_niloticus_WG.png. Note the overlapping of the colors, this is the chromsomes laid on top of each other. 
  
 ![alt tag](https://github.com/Gammerdinger/Manhattan_plots/blob/master/Overlap_O_niloticus_WG.png)
 
 ### Making your first plots, actually
 
-In order to accomplish this you will need to get a few files downloaded and created. First, let's get the reference genome we are working with using this command:
+In order to accomplish this you will need to get a few files downloaded and created. First, let's get the tilapia reference genome, which is the reference genome we are working with, using this command:
 
 ```
 curl -O -L http://chambo.umd.edu/download/20120125_MapAssembly.anchored.assembly.fasta.underscores .
 ```
 
-Next, you'll want to make a file containing the sizes of each chromosome. In order to do this, we need to use a useful program called Samtools. First we need to download and install it on your computer. You'll want to use these commands:
+Next, you'll want to make a file containing the sizes of each chromosome/scaffold/linkage group. In order to do this, we need to use a useful program called Samtools. First, we need to download and install it on your computer. You'll want to use these commands:
 
 ```
 curl -O -L http://sourceforge.net/projects/samtools/files/samtools/1.2/samtools-1.2.tar.bz2
@@ -80,7 +84,7 @@ sudo make install
 samtools faidx 20120125_MapAssembly.anchored.assembly.fasta.underscores
 ```
 
-Now, we have a file containing each chromosome and the size of the chromosome like below:
+Now, we have a file containing each chromosome/scaffold/linkage group and the size of the chromosome/scaffold/linkage group like below:
 
 ```
 LG1	31194787	5	60	61
@@ -138,7 +142,7 @@ UNK5654	927677487
 UNK5655	927678487
 ```
 
-Next, you need to run this perl script with will convert the position column into a "running position" column using this command-line:
+Next, you need to run this perl script which will convert the position column into a "running position" column using this command-line:
 
 ```
 perl Genome_R_script.pl --input_file=O_niloticus_males_vs_females.downsampled.fst.igv --output_file=O_niloticus_males_vs_females.downsampled.fst.R_ready --chrom_size_file=O_niloticus_running_chrom_size.txt
@@ -179,7 +183,7 @@ perl Genome_R_script.pl --input_file=O_niloticus_males_vs_females.downsampled.fe
 Now we are ready to make our Manhattan plots in R. First, we need to open R and set our working directory.
 
 ```
-setwd(/Where/ever/your/folder/you/are/using/as/a/working/directory)
+setwd(~/Dowloads/Manhattan_plots/)
 ```
 
 Next, you need to read in your files using these commands
@@ -264,7 +268,7 @@ mtext(side=1, "                                                                 
 
 mtext(side=1, "Linkage Group", line=2, cex=0.9)
 
-# Adds a y-axis label to the top panel
+# Adds a y-axis label to the bottom panel
 
 mtext(side=2, "-log(p)", line=2.5, cex=0.9)
 
@@ -289,16 +293,18 @@ dev.off()
 The final product should look like:
 ![alt tag](https://github.com/Gammerdinger/Manhattan_plots/blob/master/O_niloticus_WG.png)
 
+One trick I do here (And I am not entirely sure why it works, because stumbled across it) is I assign the color of each plot ("col" option) to be equal to the chromosome/linkage group/scaffold. Each time a new chromosome/linkage group/scaffold arises in the plot making process it changes the color. 
+
 ### Making individual chromosome/linkage group/scaffold plots
 
-Now that we see the LG1 is interesting to us, we might want to make a plot of just linkage group 1. This is really easily and just requires use to modify a few things. First, we will need to make a LG1 subset data table out of our whole genome table using the the following commands for Fst and Fisher's Exact Test:
+We can now see that LG1 is interesting to us, so we might want to make a plot of just linkage group 1. This is really easily accomplished and just requires us to modify a few things. First, we will need to make a LG1 subset data table out of our whole genome data table using the the following commands for Fst and Fisher's Exact Test:
 
 ```
 LG1_Fst.dat<-subset(WG_Fst.dat, V2 < 31194787,select = c(V1:V3))
 LG1_Fet.dat<-subset(WG_Fet.dat, V2 < 31194787,select = c(V1:V3))
 ```
 
-Then we just need to plot them. For the most part the code is similar. There are a few tweaks though. Now we don't worry about making a bunch of text on the bottom of each plot for the linkage groups. Instead, we just have to turn the x-axis on. Another tweak is now I have divide the x-axis by 1,000,000 in orger to have the graph scale by megabase. It gives a much cleaner overall look and it is much easier to interpret. The code in below:
+Then we just need to plot them. For the most part the code is similar. There are a few tweaks though. Now we don't worry about making a bunch of text on the bottom of each plot for the linkage groups. Instead, we just have to turn the x-axis on. Another tweak is now I have divide the x-axis by 1,000,000 in order to have the graph scale by megabase. It gives a much cleaner overall look and it is much easier to interpret. The code for the individal chromosome/linkage group/scaffold is below:
 
 ```
 # Makes a png file named O_niloticus_LG1.png in my working directory with a size of 13inx7.5in and a resolution of 300dpi
@@ -381,3 +387,5 @@ dev.off()
 The final product should appear to look like this:
 
 ![alt tag](https://github.com/Gammerdinger/Manhattan_plots/blob/master/O_niloticus_LG1.png)
+
+Congratulations!!! You have now created publication quality plots in R using a next-generation sequencing data set!!!
