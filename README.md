@@ -54,7 +54,7 @@ UNK5655	431	432	snp	0.02690219
 UNK5655	774	775	snp	0.15040816
 ```
 
-### Making the first plots
+### Making your first plots
 
 Instinctively, you may be tempted to do two things:
 
