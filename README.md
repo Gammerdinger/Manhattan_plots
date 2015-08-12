@@ -185,7 +185,7 @@ perl Genome_R_script.pl --input_file=O_niloticus_males_vs_females.downsampled.fe
 Now we are ready to make our Manhattan plots in R. First, we need to open R and set our working directory.
 
 ```
-setwd("~/Dowloads/Manhattan_plots-master/")
+setwd("~/Downloads/Manhattan_plots-master/")
 ```
 
 Next, you need to read in your files using these commands
