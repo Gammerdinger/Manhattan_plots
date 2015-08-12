@@ -1,3 +1,6 @@
+# R_workshop_demo.R
+# By Will Gammerdinger
+
 setwd("~/Downloads/Manhattan_plots-master/")
 
 WG_Fst.dat<-read.table("~/Downloads/Manhattan_plots-master/O_niloticus_males_vs_females.downsampled.fst.R_ready", header=F)
