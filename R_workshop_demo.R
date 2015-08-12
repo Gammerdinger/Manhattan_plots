@@ -19,7 +19,7 @@ par(mfrow=c(2,1), oma=c(0.25,0.25,3,0.25), mar=c(5,4,1.5,1))
 
 # Makes the Fst plot without axes in the top panel. This is super bare bones. We want to customize it all ourselves.
 
-plot(WG_Fst.dat$V2/1000000,WG_Fst.dat$V3, col=WG_Fst.dat$V1, xlab=NA, ylab=NA, pch=20, cex=0.01, ylim=c(0,1), axes=F) 
+plot(WG_Fst.dat$V2,WG_Fst.dat$V3, col=WG_Fst.dat$V1, xlab=NA, ylab=NA, pch=20, cex=0.01, ylim=c(0,1), axes=F) 
 
 # Adds a box around the plot in the top panel
 
@@ -55,7 +55,7 @@ mtext(side=3, expression("Popoolation2's F"[ST]), line=0.2)
 
 # Makes the Fisher's Exact Test plot without axes in the bottom panel.
 
-plot(WG_Fet.dat$V2/1000000,WG_Fet.dat$V3, col=WG_Fet.dat$V1, xlab=NA, ylab=NA, pch=20, cex=0.01, ylim=c(0,20), axes=F) 
+plot(WG_Fet.dat$V2,WG_Fet.dat$V3, col=WG_Fet.dat$V1, xlab=NA, ylab=NA, pch=20, cex=0.01, ylim=c(0,20), axes=F) 
 
 # Adds a box around the plot for the bottom panel
 
@@ -81,7 +81,7 @@ mtext(side=1, "                                                                 
 
 mtext(side=1, "Linkage Group", line=2, cex=0.9)
 
-# Adds a y-axis label to the top panel
+# Adds a y-axis label to the bottom panel
 
 mtext(side=2, "-log(p)", line=2.5, cex=0.9)
 
