@@ -191,8 +191,8 @@ setwd("~/Downloads/Manhattan_plots-master/")
 Next, you need to read in your files using these commands
 
 ```
-WG_Fst.dat<-read.table("/Path/to/O_niloticus_males_vs_females.downsampled.fst.R_ready", header=F)
-WG_Fet.dat<-read.table("/Path/to/O_niloticus_males_vs_females.downsampled.fet.R_ready", header=F)
+WG_Fst.dat<-read.table("~/Downloads/Manhattan_plots-master/O_niloticus_males_vs_females.downsampled.fst.R_ready", header=F)
+WG_Fet.dat<-read.table("~/Downloads/Manhattan_plots-master/O_niloticus_males_vs_females.downsampled.fet.R_ready", header=F)
 ```
 
 Lastly, we get to make the png containing two plots using this command:
