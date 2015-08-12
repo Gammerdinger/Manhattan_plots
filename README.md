@@ -5,11 +5,13 @@ Background
 
 This was designed as a tutorial for Ian Misner's R course in order to demonstrate how to plot whole genome information, such as Fst, Dxy or any other statistic, in R.
 
-The sample files here are downsampled and they are intended for tutorial use only. Additionally, R is extremely powerful and there are many ways to accomplish the same task. I dappled around trying to make Manhattan plots for awhile and this was my solution to it. I suspect there are much better ways to accomplish it, but this is the pipeline I use.
+The sample files here are downsampled and they are intended for tutorial use only. Additionally, R is extremely powerful and there are many ways to accomplish the same task. I dappled around trying to make Manhattan plots for awhile and this was my solution to it. I suspect there are much better ways to accomplish it, but this is the pipeline I use. 
 
 ### Getting started
 
-You will may have a BED file, IGV (Integrative Genomics Viewer: https://www.broadinstitute.org/igv/) file or a different type of file. This tutorial is designed to work with IGV files, but it can be modified by tweaking the code to work on BED files or other files formats.
+You will may have a BED file, IGV (Integrative Genomics Viewer: https://www.broadinstitute.org/igv/) file or a different type of file. This tutorial is designed to work with IGV files, but it can be modified by tweaking the code to work on BED files or other files formats. Below is the outline of the pipeline I used to get from raw reads into the IGV file format:
+
+![alt tag](https://github.com/Gammerdinger/Manhattan_plots/blob/master/Poopolation_Pipeline.png)
 
 First, download the file titled: O_niloticus_males_vs_females.downsampled.fst.igv
 
