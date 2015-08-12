@@ -81,8 +81,9 @@ curl -O -L http://sourceforge.net/projects/samtools/files/samtools/1.2/samtools-
 tar xvfj samtools-1.2.tar.bz2
 cd samtools-1.2/
 make
-sudo make install
-samtools faidx 20120125_MapAssembly.anchored.assembly.fasta.underscores
+export PATH=$PATH:~/Downloads/Manhattan_plots-master/samtools-1.2
+samtools faidx ../20120125_MapAssembly.anchored.assembly.fasta.underscores
+cd ..
 ```
 
 Now, we have a file containing each chromosome/scaffold/linkage group and the size of the chromosome/scaffold/linkage group like below:
