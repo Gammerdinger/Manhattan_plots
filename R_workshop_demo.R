@@ -1,8 +1,8 @@
-setwd("/Users/Will/Desktop/manplots")
+setwd("~/Downloads/Manhattan_plots-master/")
 
-WG_Fst.dat<-read.table("~/Desktop/manplots/O_niloticus_males_vs_females.downsampled.fst.R_ready", header=F)
+WG_Fst.dat<-read.table("~/Downloads/Manhattan_plots-master/O_niloticus_males_vs_females.downsampled.fst.R_ready", header=F)
 
-WG_Fet.dat<-read.table("~/Desktop/manplots/O_niloticus_males_vs_females.downsampled.fet.R_ready", header=F)
+WG_Fet.dat<-read.table("~/Downloads/Manhattan_plots-master/O_niloticus_males_vs_females.downsampled.fet.R_ready", header=F)
 
 
 ##############################################################
