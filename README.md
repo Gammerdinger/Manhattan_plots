@@ -168,6 +168,12 @@ UNK5655	927678918	0.02690219
 UNK5655	927679261	0.15040816
 ```
 
+And you'll need to run the previous perl script again for the Fisher's Exact Test file
+
+```
+perl Genome_R_script.pl --input_file=O_niloticus_males_vs_females.downsampled.fet.igv --output_file=O_niloticus_males_vs_females.downsampled.fet.R_ready --chrom_size_file=O_niloticus_running_chrom_size.txt
+```
+
 Now we are ready to make our Manhattan plots in R. First, we need to open R and set our working directory.
 
 ```
