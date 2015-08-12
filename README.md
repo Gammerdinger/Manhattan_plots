@@ -74,7 +74,7 @@ In order to accomplish this you will need to get a few files downloaded and crea
 curl -O -L http://chambo.umd.edu/download/20120125_MapAssembly.anchored.assembly.fasta.underscores
 ```
 
-Next, you'll want to make a file containing the sizes of each chromosome/scaffold/linkage group. In order to do this, we need to use a useful program called Samtools. First, we need to download and install it on your computer. You'll want to use these commands:
+Next, you'll want to make a file containing the sizes of each chromosome/scaffold/linkage group. In order to do this, we need to use a useful program called Samtools. If you don't already have Samtools, then we need to download and install it on your computer. You'll want to use these commands:
 
 ```
 curl -O -L http://sourceforge.net/projects/samtools/files/samtools/1.2/samtools-1.2.tar.bz2
@@ -82,7 +82,7 @@ tar xvfj samtools-1.2.tar.bz2
 cd samtools-1.2/
 make
 export PATH=$PATH:~/Downloads/Manhattan_plots-master/samtools-1.2
-samtools faidx ../20120125_MapAssembly.anchored.assembly.fasta.underscores
+samtools faidx ~/Downloads/Manhattan_plots-master/20120125_MapAssembly.anchored.assembly.fasta.underscores
 cd ..
 ```
 
