@@ -295,7 +295,7 @@ dev.off()
 The final product should look like:
 ![alt tag](https://github.com/Gammerdinger/Manhattan_plots/blob/master/Output%20files/O_niloticus_WG.png)
 
-One trick I do here (And I am not entirely sure why it works, because stumbled across it) is I assign the color of each plot ("col" option) to be equal to the chromosome/linkage group/scaffold. Each time a new chromosome/linkage group/scaffold arises in the plot making process it changes the color. 
+One trick I do here (And I am not entirely sure why it works, because stumbled across it) is I assign the color of each plot ("col" option) to be equal to the chromosome/linkage group/scaffold column. Each time a new chromosome/linkage group/scaffold arises in the plot making process it changes the color. 
 
 ### Making individual chromosome/linkage group/scaffold plots
 
