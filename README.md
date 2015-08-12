@@ -71,7 +71,7 @@ Instinctively, you may be tempted to do two things:
 In order to accomplish this you will need to get a few files downloaded and created. First, let's get the tilapia reference genome, which is the reference genome we are working with, using this command:
 
 ```
-curl -O -L http://chambo.umd.edu/download/20120125_MapAssembly.anchored.assembly.fasta.underscores .
+curl -O -L http://chambo.umd.edu/download/20120125_MapAssembly.anchored.assembly.fasta.underscores
 ```
 
 Next, you'll want to make a file containing the sizes of each chromosome/scaffold/linkage group. In order to do this, we need to use a useful program called Samtools. First, we need to download and install it on your computer. You'll want to use these commands:
