@@ -16,7 +16,7 @@ You may have a BED file, IGV (Integrative Genomics Viewer: https://www.broadinst
 First, download Github file contain all of the files you'll need for this tutorial by click on the "Download ZIP" icon on the right side. Using the terminal window, you'll need to change directories to this folder using this command:
 
 ```
-cd ~/Downloads/Manhattan_plots/
+cd ~/Downloads/Manhattan_plots-master/
 ```
 
 Inside you should find the file titled: O_niloticus_males_vs_females.downsampled.fst.igv 
