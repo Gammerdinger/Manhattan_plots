@@ -79,6 +79,7 @@ Next, you'll want to make a file containing the sizes of each chromosome/scaffol
 ```
 curl -O -L http://sourceforge.net/projects/samtools/files/samtools/1.2/samtools-1.2.tar.bz2
 tar xvfj samtools-1.2.tar.bz2
+cd samtools-1.2/
 make
 sudo make install
 samtools faidx 20120125_MapAssembly.anchored.assembly.fasta.underscores
