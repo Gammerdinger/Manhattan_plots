@@ -293,7 +293,7 @@ dev.off()
 ```
 
 The final product should look like:
-![alt tag](https://github.com/Gammerdinger/Manhattan_plots/blob/master/O_niloticus_WG.png)
+![alt tag](https://github.com/Gammerdinger/Manhattan_plots/blob/master/Output%20files/O_niloticus_WG.png)
 
 One trick I do here (And I am not entirely sure why it works, because stumbled across it) is I assign the color of each plot ("col" option) to be equal to the chromosome/linkage group/scaffold. Each time a new chromosome/linkage group/scaffold arises in the plot making process it changes the color. 
 
@@ -388,6 +388,6 @@ dev.off()
 
 The final product should appear to look like this:
 
-![alt tag](https://github.com/Gammerdinger/Manhattan_plots/blob/master/O_niloticus_LG1.png)
+![alt tag](https://github.com/Gammerdinger/Manhattan_plots/blob/master/Output%20files/O_niloticus_LG1.png)
 
 Congratulations!!! You have now created publication quality plots in R using a next-generation sequencing data set!!!
